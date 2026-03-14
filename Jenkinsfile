@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Build and Test') {
             steps {
-                // Run Maven clean and test aa
+                // Run Maven clean and test
                 sh 'mvn clean test'
             }
         }
