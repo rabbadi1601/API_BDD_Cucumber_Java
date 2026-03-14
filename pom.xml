@@ -6,6 +6,16 @@
   <version>1.0-SNAPSHOT</version>
   <name>API_BDD_Cucumber_Java</name>
   <url>http://maven.apache.org</url>
+
+  <!-- ================= PROPERTIES ================= -->
+  <properties>
+    <!-- Java version for compilation -->
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+    <!-- Optional: encoding to avoid platform warnings -->
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>io.cucumber</groupId>
@@ -42,8 +52,12 @@
        <plugin>
          <groupId>org.apache.maven.plugins</groupId>
          <artifactId>maven-compiler-plugin</artifactId>
+         <version>3.11.0</version>
+         <!-- Optional: can override properties if needed -->
          <configuration>
-           <encoding>UTF-8</encoding>
+           <source>${maven.compiler.source}</source>
+           <target>${maven.compiler.target}</target>
+           <encoding>${project.build.sourceEncoding}</encoding>
          </configuration>
        </plugin>
        <plugin>
