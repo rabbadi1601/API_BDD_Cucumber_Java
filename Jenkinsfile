@@ -9,9 +9,11 @@ pipeline {
         }
 
     stages {
-    stage('API Connectivity Check') {
+    stage('API Debug') {
         steps {
-            sh 'curl -v https://fakestoreapi.com/products'
+            sh '''
+            curl -v -H "User-Agent: Jenkins-CI-Test" https://fakestoreapi.com/products
+            '''
         }
     }
         stage('Build and Test') {
