@@ -4,6 +4,9 @@ pipeline {
     triggers {
         cron('0 7 * * *')  // Schedule to run every day at 7:00 AM
     }
+    tools {
+            jdk 'JAVA17'
+        }
 
     stages {
         stage('Build and Test') {
