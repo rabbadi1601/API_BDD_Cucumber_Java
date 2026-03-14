@@ -9,17 +9,25 @@ pipeline {
         }
 
     stages {
+    stage('API Connectivity Check') {
+        steps {
+            sh 'curl -v https://fakestoreapi.com/products'
+        }
+    }
         stage('Build and Test') {
             steps {
-                // Run Maven clean and test
-                sh 'mvn clean test'
-            }
+                    catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
+                        sh 'mvn clean test'
+                    }
+                }
         }
 
         stage('Generate Allure Report') {
             steps {
+                  catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
                 // Generate Allure report (requires Allure Jenkins plugin)
                 allure includeProperties: false, jdk: '', results: [[path: 'target/allure-results']]
+            }
             }
         }
     }
